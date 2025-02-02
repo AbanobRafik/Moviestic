@@ -1,0 +1,19 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+  --primary-color: #1e293b;
+  --secondary-color: #3e4c59;
+  --main-text-color: #f9fafb;
+  --accent-color: #ffd700;
+  --main-font: "Roboto", sans-serif;
+}
+
+body {
+  font-family: var(--main-font);
+  background-color: var(--primary-color);
+  color: var(--main-text-color);
+}
+nav .active{
+  color: var(--accent-color);
+}
