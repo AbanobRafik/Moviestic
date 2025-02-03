@@ -5,7 +5,7 @@ import TV from "../pages/TV";
 import Movies from "../pages/Movies";
 import Layout from "../components/Layout";
 import Login from "../pages/login";
-import Register from "../pages/register";
+import Register from "../pages/Register";
 
 function Router() {
   return (

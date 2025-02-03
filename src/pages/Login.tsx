@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import Button from "../components/Ui/Button";
 
 const Login = () => {
   return (
@@ -34,12 +35,13 @@ const Login = () => {
             required
           />
         </div>
-        <button
-          className="w-full py-3 bg-teal-600 text-white rounded hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500"
+        <Button
+          className=" bg-teal-600 disabled:bg-gray-600 rounded hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500"
+          isLoading={true}
           type="submit"
         >
           Login
-        </button>
+        </Button>
         <div className="mt-4 text-center">
           <span className="text-gray-300">Don't have an account? </span>
           <NavLink to="/register" className="text-teal-500 hover:underline">
