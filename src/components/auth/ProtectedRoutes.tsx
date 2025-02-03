@@ -1,23 +1,23 @@
 import { ReactNode } from "react";
 import { Navigate } from "react-router";
 
-interface ProtectedRoutes {
+interface ProtectedRoutesProps {
   isAllowed: boolean;
-  redicrectPath: string;
-  chilrdren: ReactNode;
-  data: unknown;
+  redirectPath: string;
+  children: ReactNode;
+  data?: unknown;
 }
 
 const ProtectedRoutes = ({
   isAllowed,
-  redicrectPath,
-  chilrdren,
+  redirectPath,
+  children,
   data,
-}: ProtectedRoutes) => {
+}: ProtectedRoutesProps) => {
   if (!isAllowed) {
-    return <Navigate to={redicrectPath} replace state={data} />;
+    return <Navigate to={redirectPath} replace state={data} />;
   } else {
-    return <>{chilrdren}</>;
+    return <>{children}</>;
   }
 };
 
