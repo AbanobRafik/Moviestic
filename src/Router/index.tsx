@@ -9,7 +9,7 @@ import ProtectedRoutes from "../components/auth/ProtectedRoutes";
 import Register from "../pages/register";
 
 function Router() {
-  const isLoggedin = true;
+  const isLoggedin = false;
   const data = isLoggedin ? { email: "abanob@ex.com" } : null;
   return (
     <BrowserRouter>
