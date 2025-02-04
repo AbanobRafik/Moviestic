@@ -1,9 +1,12 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import ErrorMsg from "../components/Ui/ErrorMsg";
 import Button from "../components/Ui/Button";
+import { useState } from "react";
+import axiosInstance from "../config/axios.config";
+import toast from "react-hot-toast";
 
 const RegisterSchema = z.object({
   firstname: z
@@ -24,13 +27,16 @@ const RegisterSchema = z.object({
     .nonempty("Email is required"),
   password: z
     .string()
-    .min(6, "Password must be 2 characters long with number ex : Ab123")
+    .min(4, "Password must be 2 characters long with number ex : Ab123")
     .nonempty("Password is required"),
 });
 
 type RegisterFormData = z.infer<typeof RegisterSchema>;
 
 const Register = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -39,8 +45,30 @@ const Register = () => {
     resolver: zodResolver(RegisterSchema),
   });
 
-  const onSubmit = (data: RegisterFormData) => {
-    console.log(data);
+  const onSubmit = async (data: RegisterFormData) => {
+    setIsLoading(true);
+    try {
+      const { status } = await axiosInstance.post("/signup", data);
+      if (status === 200) {
+        toast.success(
+          "Account created successfully! Please login to continue.",
+          {
+            duration: 2000,
+            position: "top-center",
+            style: {
+              backgroundColor: "#333",
+              color: "#fff",
+            },
+          }
+        );
+        navigate("/login");
+        console.log(data);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -122,6 +150,7 @@ const Register = () => {
         <Button
           className="w-full py-2 bg-teal-600 text-white rounded hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500"
           type="submit"
+          isLoading={isLoading}
         >
           Register
         </Button>

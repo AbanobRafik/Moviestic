@@ -4,6 +4,9 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import ErrorMsg from "../components/Ui/ErrorMsg";
+import axiosInstance from "../config/axios.config";
+import toast from "react-hot-toast";
+import { useState } from "react";
 
 const LoginSchema = z.object({
   email: z
@@ -16,6 +19,8 @@ const LoginSchema = z.object({
 type LoginFormData = z.infer<typeof LoginSchema>;
 
 const Login = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -24,8 +29,30 @@ const Login = () => {
     resolver: zodResolver(LoginSchema),
   });
 
-  const onSubmit = (data: LoginFormData) => {
-    console.log(data);
+  const onSubmit = async (data: LoginFormData) => {
+    setIsLoading(true);
+    try {
+      const { status, data: userData } = await axiosInstance.post(
+        "/signin",
+        data
+      );
+      if (status === 200) {
+        toast.success("Login successful!", {
+          duration: 2000,
+          position: "top-center",
+          style: {
+            backgroundColor: "#333",
+            color: "#fff",
+          },
+        });
+        localStorage.setItem("loggedIn", JSON.stringify(userData));
+        location.replace("/");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -67,6 +94,7 @@ const Login = () => {
         <Button
           className=" bg-teal-600 disabled:bg-gray-600 rounded hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500"
           type="submit"
+          isLoading={isLoading}
         >
           Login
         </Button>

@@ -7,10 +7,9 @@ import Layout from "../components/Layout";
 import Login from "../pages/Login";
 import ProtectedRoutes from "../components/auth/ProtectedRoutes";
 import Register from "../pages/register";
+import userData from "../components/useData";
 
 function Router() {
-  const isLoggedin = false;
-  const data = isLoggedin ? { email: "abanob@ex.com" } : null;
   return (
     <BrowserRouter>
       <Routes>
@@ -19,8 +18,7 @@ function Router() {
             path="home"
             element={
               <ProtectedRoutes
-                isAllowed={isLoggedin}
-                data={data}
+                isAllowed={userData}
                 redirectPath="/login"
               >
                 <Home />
@@ -31,8 +29,7 @@ function Router() {
             path="about"
             element={
               <ProtectedRoutes
-                isAllowed={isLoggedin}
-                data={data}
+                isAllowed={userData}
                 redirectPath="/login"
               >
                 <About />
@@ -43,8 +40,7 @@ function Router() {
             path="movies"
             element={
               <ProtectedRoutes
-                isAllowed={isLoggedin}
-                data={data}
+                isAllowed={userData}
                 redirectPath="/login"
               >
                 <Movies />
@@ -55,8 +51,7 @@ function Router() {
             path="tv"
             element={
               <ProtectedRoutes
-                isAllowed={isLoggedin}
-                data={data}
+                isAllowed={userData}
                 redirectPath="/login"
               >
                 <TV />
@@ -67,15 +62,24 @@ function Router() {
             path="login"
             element={
               <ProtectedRoutes
-                isAllowed={!isLoggedin}
-                data={data}
+                isAllowed={!userData}
                 redirectPath="/"
               >
                 <Login />
               </ProtectedRoutes>
             }
           />
-          <Route path="register" element={<Register />} />
+          <Route
+            path="register"
+            element={
+              <ProtectedRoutes
+                isAllowed={!userData}
+                redirectPath="/"
+              >
+                <Register />
+              </ProtectedRoutes>
+            }
+          />
         </Route>
       </Routes>
     </BrowserRouter>
