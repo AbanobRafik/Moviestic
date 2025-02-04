@@ -3,6 +3,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import ErrorMsg from "../components/Ui/ErrorMsg";
+import Button from "../components/Ui/Button";
 
 const RegisterSchema = z.object({
   firstname: z
@@ -118,12 +119,12 @@ const Register = () => {
           />
           {errors.password && <ErrorMsg>{errors.password.message}</ErrorMsg>}
         </div>
-        <button
+        <Button
           className="w-full py-2 bg-teal-600 text-white rounded hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500"
           type="submit"
         >
           Register
-        </button>
+        </Button>
         <div className="mt-2 text-center">
           <span className="text-gray-300">Already have an account? </span>
           <NavLink to="/login" className="text-teal-500 hover:underline">

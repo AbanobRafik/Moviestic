@@ -23,12 +23,7 @@ const Button = ({ className, isLoading, children, type, ...rest }: Button) => {
       disabled={isLoading}
       {...rest}
     >
-      {children}
-      {isLoading ? (
-        <Loader className="size-5 text-white font-bold animate-spin" />
-      ) : (
-        children
-      )}
+      {isLoading ? <Loader className="animate-spin h-5 w-5" /> : children}
     </button>
   );
 };
