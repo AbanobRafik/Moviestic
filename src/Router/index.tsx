@@ -24,6 +24,14 @@ function Router() {
             }
           />
           <Route
+            path="home"
+            element={
+              <ProtectedRoutes isAllowed={userData} redirectPath="/login">
+                <Home />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
             path="about"
             element={
               <ProtectedRoutes isAllowed={userData} redirectPath="/login">

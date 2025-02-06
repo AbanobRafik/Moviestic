@@ -8,12 +8,16 @@ import { useState } from "react";
 import axiosInstance from "../config/axios.config";
 import toast from "react-hot-toast";
 
+// Zod validation schema
 const LoginSchema = z.object({
   email: z
     .string()
     .email("Invalid email address")
     .nonempty("Email is required"),
-  password: z.string().nonempty("Password is required"),
+  password: z
+    .string()
+    .min(8, "Password should be at least 8 characters") // Updated length
+    .nonempty("Password is required"),
 });
 
 type LoginFormData = z.infer<typeof LoginSchema>;
@@ -21,6 +25,7 @@ type LoginFormData = z.infer<typeof LoginSchema>;
 const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
 
+  // Initialize react-hook-form
   const {
     register,
     handleSubmit,
@@ -29,14 +34,17 @@ const Login = () => {
     resolver: zodResolver(LoginSchema),
   });
 
+  // Submit function for login form
   const onSubmit = async (data: LoginFormData) => {
     setIsLoading(true);
     try {
+      // Send login data to the backend API
       const { status, data: userData } = await axiosInstance.post(
-        "/signin",
+        "/signin", // Ensure the API endpoint for signin is correct
         data
       );
 
+      // Check for successful response
       if (status === 200) {
         toast.success("Login successful!", {
           duration: 2000,
@@ -47,14 +55,18 @@ const Login = () => {
           },
         });
 
+        // Save user data to localStorage (e.g., token, user info)
         localStorage.setItem("loggedIn", JSON.stringify(userData));
+
+        // Redirect to home page after 2 seconds
         setTimeout(() => {
           location.replace("/home");
         }, 2000);
       }
     } catch (error) {
-      console.log(error);
-      toast.error("Login failed. Please try again.", {
+      console.error(error);
+      // Handle API errors (incorrect email/password or other errors)
+      toast.error("Incorrect email or password", {
         duration: 2000,
         position: "top-center",
         style: {

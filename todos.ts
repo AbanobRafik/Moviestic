@@ -8,4 +8,22 @@
  * * todo make calling api logic for logout
  * *=====================================
  * todo make calling api for movies
+ * 
+ * 
+ * 
+ * 
+ * 
+ * https://image.tmdb.org/t/p/w500 for imgs
+ * 
+ * 
+ * const { data } = await axios.get(
+      `https://api.themoviedb.org/3/trending/${mediaType}/day?language=en-US`,
+      {
+        headers: {
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMTFjOGU1YzIwOWNiZjc2YjhhNGNmZjUyYWQ1ZDcyYiIsIm5iZiI6MTczODg0OTQxNS4xMjQsInN1YiI6IjY3YTRiYzg3ZDQ3YmM3N2NiODg1Yjk3ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ZvJjMJ3uyguZFl4ZfTqaXIfZA9vaDgNmgRjvlBZpU9M`,
+        },
+      }
+    );
+    callBack(data.results);
+  }
  * */

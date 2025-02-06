@@ -7,13 +7,14 @@ import Button from "../components/Ui/Button";
 import { useState } from "react";
 import axiosInstance from "../config/axios.config";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 const RegisterSchema = z.object({
-  firstname: z
+  first_name: z
     .string()
     .min(3, "First name must be at least 3 characters long")
     .nonempty("First name is required"),
-  lastname: z
+  last_name: z
     .string()
     .min(3, "Last name must be at least 3 characters long")
     .nonempty("Last name is required"),
@@ -27,7 +28,7 @@ const RegisterSchema = z.object({
     .nonempty("Email is required"),
   password: z
     .string()
-    .min(4, "Password must be 2 characters long with number ex : Ab123")
+    .min(8, "Password should be at least 8 characters")
     .nonempty("Password is required"),
 });
 
@@ -62,10 +63,13 @@ const Register = () => {
           }
         );
         navigate("/login");
-        console.log(data);
       }
     } catch (error) {
-      console.log(error);
+      if (axios.isAxiosError(error)) {
+        toast.error(error.response?.data?.message || "Registration failed!");
+      } else {
+        toast.error("An unknown error occurred!");
+      }
     } finally {
       setIsLoading(false);
     }
@@ -92,10 +96,10 @@ const Register = () => {
               className="w-full p-2 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-teal-500"
               type="text"
               id="first_name"
-              {...register("firstname")}
+              {...register("first_name")}
             />
-            {errors.firstname && (
-              <ErrorMsg>{errors.firstname.message}</ErrorMsg>
+            {errors.first_name && (
+              <ErrorMsg>{errors.first_name.message}</ErrorMsg>
             )}
           </div>
           <div className="w-1/2">
@@ -106,9 +110,11 @@ const Register = () => {
               className="w-full p-2 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-teal-500"
               type="text"
               id="last_name"
-              {...register("lastname")}
+              {...register("last_name")}
             />
-            {errors.lastname && <ErrorMsg>{errors.lastname.message}</ErrorMsg>}
+            {errors.last_name && (
+              <ErrorMsg>{errors.last_name.message}</ErrorMsg>
+            )}
           </div>
         </div>
         <div className="mb-3">
