@@ -77,7 +77,7 @@ const NavBar = () => {
           {userData ? (
             <button
               onClick={Logout}
-              className="w-full md:w-auto px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-600"
+              className="w-full md:w-auto px-8 py-2 bg-gray-700 text-white rounded hover:bg-gray-600"
             >
               Logout
             </button>

@@ -1,12 +1,12 @@
 import { NavLink } from "react-router-dom";
-import Button from "../components/Ui/Button";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import ErrorMsg from "../components/Ui/ErrorMsg";
+import Button from "../components/Ui/Button";
+import { useState } from "react";
 import axiosInstance from "../config/axios.config";
 import toast from "react-hot-toast";
-import { useState } from "react";
 
 const LoginSchema = z.object({
   email: z
@@ -36,6 +36,7 @@ const Login = () => {
         "/signin",
         data
       );
+
       if (status === 200) {
         toast.success("Login successful!", {
           duration: 2000,
@@ -45,11 +46,22 @@ const Login = () => {
             color: "#fff",
           },
         });
+
         localStorage.setItem("loggedIn", JSON.stringify(userData));
-        location.replace("/");
+        setTimeout(() => {
+          location.replace("/home");
+        }, 2000);
       }
     } catch (error) {
       console.log(error);
+      toast.error("Login failed. Please try again.", {
+        duration: 2000,
+        position: "top-center",
+        style: {
+          backgroundColor: "#333",
+          color: "#fff",
+        },
+      });
     } finally {
       setIsLoading(false);
     }
@@ -92,7 +104,7 @@ const Login = () => {
           {errors.password && <ErrorMsg>{errors.password.message}</ErrorMsg>}
         </div>
         <Button
-          className=" bg-teal-600 disabled:bg-gray-600 rounded hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500"
+          className="w-full py-2 bg-teal-600 text-white rounded hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500"
           type="submit"
           isLoading={isLoading}
         >

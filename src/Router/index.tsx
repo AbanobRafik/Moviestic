@@ -6,21 +6,19 @@ import Movies from "../pages/Movies";
 import Layout from "../components/Layout";
 import Login from "../pages/Login";
 import ProtectedRoutes from "../components/auth/ProtectedRoutes";
-import Register from "../pages/register";
+import Register from "../pages/Register";
 import userData from "../components/useData";
+import ErrorPage from "../pages/ErrorPage";
 
 function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Layout />} errorElement={<ErrorPage />}>
           <Route
-            path="home"
+            index
             element={
-              <ProtectedRoutes
-                isAllowed={userData}
-                redirectPath="/login"
-              >
+              <ProtectedRoutes isAllowed={userData} redirectPath="/login">
                 <Home />
               </ProtectedRoutes>
             }
@@ -28,10 +26,7 @@ function Router() {
           <Route
             path="about"
             element={
-              <ProtectedRoutes
-                isAllowed={userData}
-                redirectPath="/login"
-              >
+              <ProtectedRoutes isAllowed={userData} redirectPath="/login">
                 <About />
               </ProtectedRoutes>
             }
@@ -39,10 +34,7 @@ function Router() {
           <Route
             path="movies"
             element={
-              <ProtectedRoutes
-                isAllowed={userData}
-                redirectPath="/login"
-              >
+              <ProtectedRoutes isAllowed={userData} redirectPath="/login">
                 <Movies />
               </ProtectedRoutes>
             }
@@ -50,10 +42,7 @@ function Router() {
           <Route
             path="tv"
             element={
-              <ProtectedRoutes
-                isAllowed={userData}
-                redirectPath="/login"
-              >
+              <ProtectedRoutes isAllowed={userData} redirectPath="/login">
                 <TV />
               </ProtectedRoutes>
             }
@@ -61,10 +50,7 @@ function Router() {
           <Route
             path="login"
             element={
-              <ProtectedRoutes
-                isAllowed={!userData}
-                redirectPath="/"
-              >
+              <ProtectedRoutes isAllowed={!userData} redirectPath="/home">
                 <Login />
               </ProtectedRoutes>
             }
@@ -72,14 +58,12 @@ function Router() {
           <Route
             path="register"
             element={
-              <ProtectedRoutes
-                isAllowed={!userData}
-                redirectPath="/"
-              >
+              <ProtectedRoutes isAllowed={!userData} redirectPath="/home">
                 <Register />
               </ProtectedRoutes>
             }
           />
+          <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
