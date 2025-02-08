@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
-import About from "../pages/About";
+import People from "../pages/People";
 import TV from "../pages/TV";
 import Movies from "../pages/Movies";
 import Layout from "../components/Layout";
@@ -32,10 +32,10 @@ function Router() {
             }
           />
           <Route
-            path="about"
+            path="People"
             element={
               <ProtectedRoutes isAllowed={userData} redirectPath="/login">
-                <About />
+                <People />
               </ProtectedRoutes>
             }
           />

@@ -49,10 +49,10 @@ const NavBar = () => {
           </li>
           <li>
             <NavLink
-              to="about"
+              to="People"
               className="block mx-3 text-white hover:text-[--accent-color] text-center"
             >
-              About
+              People
             </NavLink>
           </li>
           <li>
