@@ -42,7 +42,7 @@ const NavBar = () => {
           <li>
             <NavLink
               to="home"
-              className="block mx-3 text-white hover:text-gray-300 text-center"
+              className="block mx-3 text-white hover:text-[--accent-color] text-center"
             >
               Home
             </NavLink>
@@ -50,7 +50,7 @@ const NavBar = () => {
           <li>
             <NavLink
               to="about"
-              className="block mx-3 text-white hover:text-gray-300 text-center"
+              className="block mx-3 text-white hover:text-[--accent-color] text-center"
             >
               About
             </NavLink>
@@ -58,7 +58,7 @@ const NavBar = () => {
           <li>
             <NavLink
               to="movies"
-              className="block mx-3 text-white hover:text-gray-300 text-center"
+              className="block mx-3 text-white hover:text-[--accent-color] text-center"
             >
               Movies
             </NavLink>
@@ -66,7 +66,7 @@ const NavBar = () => {
           <li>
             <NavLink
               to="tv"
-              className="block mx-3 text-white hover:text-gray-300 text-center"
+              className="block mx-3 text-white hover:text-[--accent-color] text-center"
             >
               TV
             </NavLink>

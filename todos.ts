@@ -26,4 +26,14 @@
     );
     callBack(data.results);
   }
+
+
+
+
+
+    for person card
+  https://developer.themoviedb.org/reference/trending-people
+
+  for movie card
+  https://developer.themoviedb.org/reference/trending-movies
  * */
