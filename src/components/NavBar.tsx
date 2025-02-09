@@ -49,14 +49,6 @@ const NavBar = () => {
           </li>
           <li>
             <NavLink
-              to="People"
-              className="block mx-3 text-white hover:text-[--accent-color] text-center"
-            >
-              People
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
               to="movies"
               className="block mx-3 text-white hover:text-[--accent-color] text-center"
             >
@@ -69,6 +61,14 @@ const NavBar = () => {
               className="block mx-3 text-white hover:text-[--accent-color] text-center"
             >
               TV
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="People"
+              className="block mx-3 text-white hover:text-[--accent-color] text-center"
+            >
+              People
             </NavLink>
           </li>
         </ul>

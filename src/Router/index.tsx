@@ -9,6 +9,9 @@ import ProtectedRoutes from "../components/auth/ProtectedRoutes";
 import Register from "../pages/Register";
 import userData from "../components/useData";
 import ErrorPage from "../pages/ErrorPage";
+import PeopleDetails from "../components/PeopleDetails";
+import TvDetails from "../components/TvDetails";
+import MovieDetails from "../components/MovieDetails";
 
 function Router() {
   return (
@@ -52,6 +55,30 @@ function Router() {
             element={
               <ProtectedRoutes isAllowed={userData} redirectPath="/login">
                 <TV />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="persondetails/:id/:name"
+            element={
+              <ProtectedRoutes isAllowed={userData} redirectPath="/login">
+                <PeopleDetails />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="tvdetails/:id/:name"
+            element={
+              <ProtectedRoutes isAllowed={userData} redirectPath="/login">
+                <TvDetails />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="moviedetails/:id/:name"
+            element={
+              <ProtectedRoutes isAllowed={userData} redirectPath="/login">
+                <MovieDetails />
               </ProtectedRoutes>
             }
           />
