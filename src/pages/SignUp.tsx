@@ -34,7 +34,7 @@ const RegisterSchema = z.object({
 
 type RegisterFormData = z.infer<typeof RegisterSchema>;
 
-const Register = () => {
+const SignUp = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -171,4 +171,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default SignUp;

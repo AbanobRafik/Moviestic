@@ -6,12 +6,13 @@ import Movies from "../pages/Movies";
 import Layout from "../components/Layout";
 import Login from "../pages/Login";
 import ProtectedRoutes from "../components/auth/ProtectedRoutes";
-import Register from "../pages/Register";
+import Register from "../pages/SignUp";
 import userData from "../components/useData";
 import ErrorPage from "../pages/ErrorPage";
 import PeopleDetails from "../components/PeopleDetails";
 import TvDetails from "../components/TvDetails";
 import MovieDetails from "../components/MovieDetails";
+import SignUp from "../pages/SignUp";
 
 function Router() {
   return (
@@ -94,7 +95,7 @@ function Router() {
             path="register"
             element={
               <ProtectedRoutes isAllowed={!userData} redirectPath="/home">
-                <Register />
+                <SignUp />
               </ProtectedRoutes>
             }
           />
