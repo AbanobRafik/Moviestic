@@ -49,12 +49,12 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="px-20 py-2">
+    <div className="md:px-20 px-8 py-2">
       <div id="trending-movies" className="flex flex-col">
-        <h2 className="text-4xl font-extrabold text-center mt-10 mb-6 border-b-4 border-gradient-to-r from-amber-400 to-yellow-600 pb-2 tracking-wide drop-shadow-lg">
+        <h2 className="md:text-4xl text-2xl font-extrabold text-center mt-10 mb-6 border-b-4 border-gradient-to-r from-amber-400 to-yellow-600 pb-2 tracking-wide drop-shadow-lg">
           🎥 Trending Movies to watch
         </h2>
-        <div className="flex flex-wrap justify-center gap-4 mx-10 ">
+        <div className="flex flex-wrap justify-center gap-4 md:mx-10 mx-5">
           {isLoading
             ? Array.from({ length: 10 }, (_, idx) => <CardSkeleton key={idx} />)
             : trendingMovies.slice(0, 10).map((movie) => (
@@ -74,46 +74,52 @@ const Home = () => {
         </div>
       </div>
       <div id="trending-tv" className="flex flex-col">
-        <h2 className="text-4xl font-extrabold text-center mt-10 mb-6 bg-gradient-to-r from-blue-500 to-teal-500 text-white py-2 rounded-lg tracking-wide drop-shadow-lg">
+        <h2 className="md:text-4xl text-2xl font-extrabold text-center mt-10 mb-6 bg-gradient-to-r from-blue-500 to-teal-500 text-white py-2 rounded-lg tracking-wide drop-shadow-lg">
           📺 Trending TV Shows right now
         </h2>
         <div className="flex flex-wrap justify-center gap-4">
           {isLoading
             ? Array.from({ length: 10 }, (_, idx) => <CardSkeleton key={idx} />)
-            : trendingTv.slice(0, 10).filter((tv)=> tv.vote_average).map((tv) => (
-                <Link to={`/tvdetails/${tv.id}/${tv.name}`} key={tv.id}>
-                  <Card
-                    key={tv.id}
-                    id={tv.id}
-                    poster_path={tv.poster_path}
-                    title={truncateTitle(tv.name)} // Truncate the title here
-                    vote_average={tv.vote_average}
-                  />
-                </Link>
-              ))}
+            : trendingTv
+                .slice(0, 10)
+                .filter((tv) => tv.vote_average)
+                .map((tv) => (
+                  <Link to={`/tvdetails/${tv.id}/${tv.name}`} key={tv.id}>
+                    <Card
+                      key={tv.id}
+                      id={tv.id}
+                      poster_path={tv.poster_path}
+                      title={truncateTitle(tv.name)} // Truncate the title here
+                      vote_average={tv.vote_average}
+                    />
+                  </Link>
+                ))}
         </div>
       </div>
       <div id="trending-people" className="flex flex-col">
-        <h2 className="text-4xl font-extrabold text-center mt-10 mb-6 text-white bg-gradient-to-r from-emerald-500 to-blue-600 py-3 rounded-lg tracking-wide drop-shadow-lg">
+        <h2 className="md:text-4xl text-2xl font-extrabold text-center mt-10 mb-6 text-white bg-gradient-to-r from-emerald-500 to-blue-600 py-3 rounded-lg tracking-wide drop-shadow-lg">
           🌟 Trending People to Follow
         </h2>
         <div className="flex flex-wrap justify-center gap-4">
           {isLoading
             ? Array.from({ length: 10 }, (_, idx) => <CardSkeleton key={idx} />)
-            : trendingPeople.slice(0, 10).map((person) => (
-                <Link
-                  to={`/persondetails/${person.id}/${person.name}`}
-                  key={person.id}
-                >
-                  <Card
+            : trendingPeople
+                .filter((person) => person.profile_path)
+                .slice(0, 10)
+                .map((person) => (
+                  <Link
+                    to={`/persondetails/${person.id}/${person.name}`}
                     key={person.id}
-                    id={person.id}
-                    profile_path={person.profile_path}
-                    name={person.name}
-                    popularity={person.popularity}
-                  />
-                </Link>
-              ))}
+                  >
+                    <Card
+                      key={person.id}
+                      id={person.id}
+                      profile_path={person.profile_path}
+                      name={person.name}
+                      popularity={person.popularity}
+                    />
+                  </Link>
+                ))}
         </div>
       </div>
     </div>

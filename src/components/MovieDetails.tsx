@@ -74,11 +74,11 @@ const MovieDetails = () => {
           </h3>
           <p className="text-lg text-gray-300 mb-4">{movieDetails.overview}</p>
           <div className="mb-4">
-            <strong className="text-blue-300">Language:</strong>{" "}
+            <strong className="text-blue-300">Language:</strong>
             {movieDetails.original_language}
           </div>
           <div className="mb-4">
-            <strong className="text-green-300">Rating:</strong>{" "}
+            <strong className="text-green-300">Rating:</strong>
             {movieDetails.vote_average.toFixed(1)}
           </div>
 
