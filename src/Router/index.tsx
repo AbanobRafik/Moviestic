@@ -6,7 +6,6 @@ import Movies from "../pages/Movies";
 import Layout from "../components/Layout";
 import Login from "../pages/Login";
 import ProtectedRoutes from "../components/auth/ProtectedRoutes";
-import Register from "../pages/SignUp";
 import userData from "../components/useData";
 import ErrorPage from "../pages/ErrorPage";
 import PeopleDetails from "../components/PeopleDetails";
