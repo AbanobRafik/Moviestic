@@ -128,6 +128,11 @@ const Login = () => {
             Register
           </NavLink>
         </div>
+        <div className="mt-6 p-4 bg-gray-800 rounded text-white">
+          <h3 className="text-lg font-bold mb-2">Demo Account</h3>
+          <p>Email: <span className="font-mono">user1@example.com</span></p>
+          <p>Password: <span className="font-mono">user@123</span></p>
+        </div>
       </form>
     </div>
   );

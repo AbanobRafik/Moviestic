@@ -2,19 +2,20 @@ import { ReactNode } from "react";
 import { Loader } from "lucide-react";
 import clsx from "clsx";
 
-interface Button {
+interface ButtonProps {
   children: ReactNode;
   className: string;
   isLoading?: boolean;
   type?: "button" | "submit" | "reset";
+  onClick?: () => void;
 }
 
-const Button = ({ className, isLoading, children, type, ...rest }: Button) => {
+const Button = ({ className, isLoading, children, type, ...rest }: ButtonProps) => {
   return (
     <button
       type={type}
       className={clsx(
-        `flex items-center justify-center gap-2 px-2 py-3 w-full text-white`,
+        `flex items-center cursor-pointer justify-center gap-2 px-2 py-3 text-white`,
         {
           "cursor-not-allowed": isLoading,
         },
