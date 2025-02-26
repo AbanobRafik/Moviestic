@@ -55,7 +55,7 @@ const TVDetails = () => {
 
   return (
     <div className="container bg-cyan-900 mx-auto max-w-5xl p-6 text-white rounded-lg shadow-xl ">
-      <div className="flex items-center flex-row md:flex-col justify-between ">
+      <div className="flex items-center md:flex-row flex-col justify-between ">
         {/* img */}
         <div className="w-full md:w-1/3 ">
           <img
